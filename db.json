@@ -1,0 +1,170 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "name": "A2B",
+      "address": "chennai",
+      "email": "A2B@gmail.com",
+      "services": "Meals",
+      "category": "Veg",
+      "mobile": 1234567890
+    },
+    {
+      "id": 2,
+      "name": "Selam RR",
+      "address": "velachery",
+      "email": "selamrr@gmail.com",
+      "services": "chicken biriyani",
+      "category": "Non-Veg",
+      "mobile": 987456321
+    },
+    {
+      "id": 3,
+      "name": "andhra mess",
+      "address": "taramani",
+      "email": "andhramess@gmail.c0m",
+      "services": null,
+      "category": "Both",
+      "mobile": 987456321
+    },
+    {
+      "id": 4,
+      "name": "geetham",
+      "address": "velachery",
+      "email": "geetham@gmail.com",
+      "services": null,
+      "category": "Veg",
+      "mobile": 987456321
+    },
+    {
+      "id": 5,
+      "name": "ss biriyani",
+      "address": "saidhapet",
+      "email": "ssbiriyani@gmail.com",
+      "services": null,
+      "category": "Non-Veg",
+      "mobile": 987456321
+    },
+    {
+      "id": 6,
+      "name": "anjapper",
+      "address": "OMR",
+      "email": "anjappar",
+      "services": "chicken biriyani,veg meals",
+      "category": "Both",
+      "mobile": 123456789
+    },
+    {
+      "id": 7,
+      "name": "buhari",
+      "address": "velachery",
+      "email": "buhari@gmail.com",
+      "services": "biriyani",
+      "category": "Both",
+      "mobile": 1234567890
+    },
+    {
+      "id": 8,
+      "name": "A2B",
+      "address": "adyar",
+      "email": "a2b@gmail.com",
+      "services": "",
+      "category": "Veg",
+      "mobile": 1234567890
+    },
+    {
+      "id": 9,
+      "name": "althaf food court",
+      "address": "velachery",
+      "email": "althaf@gmail.com",
+      "services": null,
+      "category": "Non-Veg",
+      "mobile": 1234567890
+    },
+    {
+      "id": 10,
+      "name": "bbq nation",
+      "address": "velachery",
+      "email": "bbq@gmail.com",
+      "services": null,
+      "category": "Non-Veg",
+      "mobile": 1234567890
+    },
+    {
+      "id": 11,
+      "name": "amma kitchen",
+      "address": "guindy",
+      "email": "kitchen@gmail.com",
+      "services": null,
+      "category": "Both",
+      "mobile": 1234567890
+    },
+    {
+      "id": 12,
+      "name": "mazha nilam",
+      "address": "velachery",
+      "email": "nilam@gmail.com",
+      "services": null,
+      "category": "Veg",
+      "mobile": 1234567890
+    },
+    {
+      "id": 13,
+      "name": "saravana bhavan",
+      "address": "vadapalani",
+      "email": "saravanabhavan@gmail.com",
+      "services": null,
+      "category": "Veg",
+      "mobile": 1234567890
+    },
+    {
+      "id": 14,
+      "name": "dubai kitchen",
+      "address": "nelankari",
+      "email": "kitchen@gmail.com",
+      "services": null,
+      "category": "Non-Veg",
+      "mobile": 1234567890
+    },
+    {
+      "id": 16,
+      "name": "mani kitchen",
+      "address": "Omr",
+      "email": "mani@gmail.com",
+      "services": null,
+      "category": "Both",
+      "mobile": 1234567890
+    },
+    {
+      "id": 17,
+      "name": "Geetam",
+      "address": "Mount road,chennai",
+      "email": "Geetham@gmail.com",
+      "services": "Meals, tiffin",
+      "category": "Veg",
+      "mobile": 9826347242
+    }
+  ],
+  "signup": [
+    {
+      "name": "user",
+      "email": "user@gmail.com",
+      "mobile": 9876543210,
+      "role": "User",
+      "password": "12345678",
+      "id": 1
+    },
+    {
+      "name": "admin",
+      "email": "admin@gmail.com",
+      "mobile": 8764523161,
+      "role": "Admin",
+      "password": "12345678",
+      "id": 2
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

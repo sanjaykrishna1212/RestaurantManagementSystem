@@ -1,0 +1,219 @@
+<div class="backgroundpic">
+<nav class="navbar navbar-light bg-primary">
+   <div class="container-fluid">
+    <div style="display: flex;">
+    <img src="../../assets/restro-high-resolution-logo-black-transparent.png" style="height:60px;"> <h2 style="margin: 10px 13px;">RMS</h2> <h4 style="margin: 12px 0px;">( Restaurant Management System)</h4>
+    </div>
+     <div class="d-flex">
+      <div class="mx-2">
+        <input placeholder="Search..." class="form-control" type="text" [(ngModel)]="term">
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          {{selectedOption}}
+        </button>
+        <div class="dropdown-menu">
+          <ng-container *ngFor = "let item of options">
+          <a class="dropdown-item" (click)="selectCategory(item)">{{item}}</a>
+        </ng-container>
+        </div>
+      </div>
+      <button style="margin-left: 5px;" (click)="clickAddResto()" class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"*ngIf="role == 'admin' || role =='Admin'" >Add Restaurant</button>
+      <button routerLink="/login" style="margin-left: 5px;" class="btn btn-danger" type="button" data-bs-toggle="modal">Log Out</button>
+    </div>
+   </div>
+</nav>
+<!-- <div class="mb-1 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">Restaurent Records Management System</h1>
+      <p class="col-md-8 fs-4"> You can save Records of Restaurent</p>
+    </div>
+</div> -->
+<div style="height: calc(100vh - 125px);
+overflow-y: auto;
+overflow-x: hidden;
+" *ngIf="selectedOption!='All'">
+  <table class="table m-4"  >
+    <thead>
+        <tr>
+            <th scope="col" style="width:3px">S.No</th>
+            <th scope="col">Restaurant Name</th>
+            <th scope="col">Restaurant Email</th>
+            <th scope="col">Restaurant Address</th>
+            <th scope="col">Restaurant Phone</th>
+            <th scope="col">Category</th>
+            <th scope="col" >Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of AllData;let i = index">
+            <td>{{i+1}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.email}}</td>
+            <td>{{data.address}}</td>
+            <td>{{data.mobile}}</td>
+            <td>{{data.category}}</td>
+            <td *ngIf =" role == 'admin' || role =='Admin'">
+                <button (click)="onEditResto(data)" class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button> &nbsp;
+                <button (click)="deleteResto(data.id)" class="btn btn-danger" >Delete</button>
+            </td>
+            <td *ngIf =" role == 'user' || role =='User'">
+              <button  class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#addorder">Order</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<div style="height: calc(100vh - 125px);
+overflow-y: auto;
+overflow-x: hidden;
+"  *ngIf="selectedOption=='All'">
+  <table class="table m-4"  style="width: 100%;">
+    <thead >
+        <tr>
+            <th scope="col" style="width:3px">S.No</th>
+            <th scope="col">Restaurant Name</th>
+            <th scope="col">Restaurant Email</th>
+            <th scope="col">Restaurant Address</th>
+            <th scope="col">Restaurant Phone</th>
+            <th scope="col">Category</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of allRestaurentData;let i = index">
+            <td>{{i+1}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.email}}</td>
+            <td>{{data.address}}</td>
+            <td>{{data.mobile}}</td>
+            <td>{{data.category}}</td>
+            <td *ngIf =" role == 'admin' || role =='Admin'">
+                <button (click)="onEditResto(data)" class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button> &nbsp;
+                <button (click)="deleteResto(data.id)" class="btn btn-danger" >Delete</button>
+            </td>
+            <td *ngIf =" role == 'user' || role =='User'">
+              <button  class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#addorder">Order</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+
+<!-- (click)="onOrder(data.services)" -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Records</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formValue">
+                <div class="mb-3">
+                  <label class="form-label">Name</label>
+                  <input type="text" class="form-control" formControlName="name" placeholder="Restaurent Name" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label  class="form-label">Email</label>
+                  <input type="email" class="form-control" formControlName="email"  placeholder="abcd@gmail.com" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Address</label>
+                    <input type="text" class="form-control" formControlName="address"  placeholder="Abc road , near abc , pin: 12546" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label">Mobile</label>
+                    <input type="number" class="form-control" formControlName="mobile"  placeholder="+91-1234567890" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                  <label  class="form-label">Category</label>
+                  <input type="text" class="form-control" formControlName="category"  placeholder="Veg or Non-Veg or Both" id="exampleInputPassword1">
+              </div>
+                <div class="mb-3">
+                    <label  class="form-label">Services</label>
+                    <input type="text" class="form-control" formControlName="services"  placeholder="chai , coffee" id="exampleInputPassword1">
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="clear">Close</button>
+          <button *ngIf="showAdd" type="button" class="btn btn-primary" (click)="addRestaurent()">Add Details</button>
+          <button *ngIf="showBtn" type="button" class="btn btn-primary" (click)="updateResto()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- order model -->
+  <div class="modal fade" id="addorder" tabindex="-1" aria-labelledby="addorder" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Menu</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formValue">
+                <div style="display:flex; justify-content: space-evenly; align-items: center;">
+                  <div class="mb-3" *ngIf="selectedOption =='Veg' || selectedOption =='All'|| selectedOption =='Both'">
+                    <label class="form-label">Veg</label>
+                    <div class="mb-3">
+                      <input type="checkbox" id="Veg Briyani" name="Veg Briyani"> Veg Briyani
+                    </div>
+                    <div class="mb-3">
+                    <input type="checkbox" id="Gobi Fry" name="Gobi Fry"> Gobi Fry
+                    </div>
+                    <div class="mb-3">
+                    <input type="checkbox" id="Panner Gravy" name="Panner Gravy"> Panner Gravy
+                    </div>
+                    <div class="mb-3">
+                    <input type="checkbox" id="Chappathi" name="Chappathi"> Chappathi
+                    </div>
+                    <div class="mb-3">
+                    <input type="checkbox" id=" Veg Meals" name=" Veg Meals"> Veg Meals
+                    </div>
+
+                  </div>
+                  <div class="mb-3" *ngIf="selectedOption =='Non-Veg'|| selectedOption =='All'|| selectedOption =='Both'">
+                    <label class="form-label" >Non-Veg</label>
+                    <div class="mb-3">
+                      <input type="checkbox" id="Chicken Briyani" name="Chicken Briyani"> Chicken Briyani
+                    </div>
+                    <div class="mb-3">
+                    <input type="checkbox" id="non veg meals" name="non veg meals"> non veg meals
+                    </div>
+                    <div class="mb-3">
+                    <input type="checkbox" id="Fish fry" name="Fish fry"> Fish fry
+                    </div>
+                    <div class="mb-3">
+                    <input type="checkbox" id="mutton biriyani" name="mutton biriyani"> mutton biriyani
+                    </div>
+                    <div class="mb-3">
+                    <input type="checkbox" id="prawn 65 fry" name="prawn 65 fry"> prawn 65 fry
+                    </div>
+
+                  </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Address</label>
+                    <input type="text" class="form-control" formControlName="address"  placeholder="Abc road , near abc , pin: 12546" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label">Mobile</label>
+                    <input type="number" class="form-control" formControlName="mobile"  placeholder="+91-1234567890" id="exampleInputPassword1">
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" data-bs-dismiss="modal" id="clear" (click)="onOrder()">Confirm Order</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="clear">Close</button>
+          <button *ngIf="showAdd" type="button" class="btn btn-primary" (click)="addRestaurent()">Add Details</button>
+          <button *ngIf="showBtn" type="button" class="btn btn-primary" (click)="updateResto()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
